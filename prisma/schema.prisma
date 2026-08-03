@@ -1,0 +1,448 @@
+// BHUMARA — PostgreSQL schema (Prisma).
+// Konvensi: model PascalCase, kolom camelCase, mapping DB snake_case via @map/@@map.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================ ENUM ============================
+enum Role {
+  mahasiswa
+  pendamping
+  panitia
+  admin
+  super_admin
+}
+
+enum TimelineStatus {
+  upcoming
+  ongoing
+  completed
+}
+
+enum TargetScope {
+  ALL
+  FAKULTAS
+  KELOMPOK
+}
+
+enum TugasStatus {
+  draft
+  published
+  closed
+}
+
+enum SubmissionStatus {
+  submitted
+  late
+  reviewed
+}
+
+enum QuizType {
+  MC
+  TF
+  SHORT
+}
+
+enum QuizSessionStatus {
+  ongoing
+  finished
+  abandoned
+}
+
+enum VideoType {
+  OPENING
+  TEMA
+  JINGGLE
+  SAMBUTAN
+  TREASURE
+}
+
+enum SocialPlatform {
+  INSTAGRAM
+  YOUTUBE
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+}
+
+// ============================ AUTH & USER ============================
+model User {
+  id           String    @id @default(cuid())
+  role         Role      @default(mahasiswa)
+  email        String    @unique
+  phone        String?
+  passwordHash String?   @map("password_hash")
+  isActive     Boolean   @default(true) @map("is_active")
+  lastLoginAt  DateTime? @map("last_login_at")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  mahasiswa  Mahasiswa?
+  pendamping Pendamping?
+  auditLogs  AuditLog[]
+
+  @@map("users")
+}
+
+model Mahasiswa {
+  id                String   @id @default(cuid())
+  userId            String   @unique @map("user_id")
+  nomorPendaftaran  String   @unique @map("nomor_pendaftaran")
+  nama              String
+  tanggalLahir      DateTime @map("tanggal_lahir")
+  fakultasId        String   @map("fakultas_id")
+  prodiId           String   @map("prodi_id")
+  kelompokId        String?  @map("kelompok_id")
+  robloxUserId      String?  @map("roblox_user_id")
+  avatarUrl         String?  @map("avatar_url")
+  kontakDarurat     String?  @map("kontak_darurat")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  user     User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fakultas Fakultas        @relation(fields: [fakultasId], references: [id], onDelete: Restrict)
+  prodi    ProgramStudi    @relation(fields: [prodiId], references: [id], onDelete: Restrict)
+  kelompok Kelompok?       @relation(fields: [kelompokId], references: [id], onDelete: SetNull)
+  sessions QuizSession[]
+  badges   MahasiswaBadge[]
+  submissions TugasSubmission[]
+
+  @@index([fakultasId])
+  @@index([kelompokId])
+  @@map("mahasiswa")
+}
+
+model Fakultas {
+  id        String         @id @default(cuid())
+  nama      String         @unique
+  kode      String?        @unique
+  prodi     ProgramStudi[]
+  mahasiswa Mahasiswa[]
+
+  @@map("fakultas")
+}
+
+model ProgramStudi {
+  id         String      @id @default(cuid())
+  nama       String
+  fakultasId String      @map("fakultas_id")
+  fakultas   Fakultas    @relation(fields: [fakultasId], references: [id], onDelete: Cascade)
+  mahasiswa  Mahasiswa[]
+
+  @@unique([nama, fakultasId])
+  @@map("program_studi")
+}
+
+model Kelompok {
+  id                 String      @id @default(cuid())
+  nama               String      @unique
+  pendampingId       String?     @map("pendamping_id")
+  whatsappChannelUrl String?     @map("whatsapp_channel_url")
+  pendamping         Pendamping? @relation(fields: [pendampingId], references: [id], onDelete: SetNull)
+  mahasiswa          Mahasiswa[]
+
+  @@map("kelompok")
+}
+
+model Pendamping {
+  id        String     @id @default(cuid())
+  userId    String?    @unique @map("user_id")
+  nama      String
+  kontak    String?
+  user      User?      @relation(fields: [userId], references: [id], onDelete: SetNull)
+  kelompok  Kelompok[]
+
+  @@map("pendamping")
+}
+
+// ============================ KONTEN DINAMIS ============================
+model TimelineEvent {
+  id            String         @id @default(cuid())
+  judul         String
+  deskripsi     String?
+  lokasi        String?
+  startAt       DateTime       @map("start_at")
+  endAt         DateTime?      @map("end_at")
+  checklistItems Json?         @map("checklist_items") // hal yang perlu dibawa
+  attachmentUrl String?        @map("attachment_url")
+  urutan        Int            @default(0)
+  // status upcoming/ongoing/completed dihitung dari now() vs start/end (bukan disimpan)
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @updatedAt @map("updated_at")
+
+  @@index([startAt])
+  @@map("timeline_events")
+}
+
+model Tugas {
+  id           String       @id @default(cuid())
+  judul        String
+  deskripsi    String?
+  kategori     String?
+  deadlineAt   DateTime     @map("deadline_at")
+  targetScope  TargetScope  @default(ALL) @map("target_scope")
+  targetRefId  String?      @map("target_ref_id") // fakultasId / kelompokId
+  attachmentUrl String?     @map("attachment_url")
+  status       TugasStatus  @default(draft)
+  createdById  String?      @map("created_by")
+  createdAt    DateTime     @default(now()) @map("created_at")
+  updatedAt    DateTime     @updatedAt @map("updated_at")
+
+  submissions TugasSubmission[]
+
+  @@index([status])
+  @@index([deadlineAt])
+  @@map("tugas")
+}
+
+model TugasSubmission {
+  id          String           @id @default(cuid())
+  mahasiswaId String           @map("mahasiswa_id")
+  tugasId     String           @map("tugas_id")
+  fileUrl     String?          @map("file_url")
+  submittedAt DateTime         @default(now()) @map("submitted_at")
+  status      SubmissionStatus @default(submitted)
+
+  mahasiswa Mahasiswa @relation(fields: [mahasiswaId], references: [id], onDelete: Cascade)
+  tugas     Tugas     @relation(fields: [tugasId], references: [id], onDelete: Cascade)
+
+  @@unique([mahasiswaId, tugasId])
+  @@map("tugas_submissions")
+}
+
+model Ormawa {
+  id                String        @id @default(cuid())
+  slug              String        @unique
+  nama              String
+  kategori          String        // Fakultas / UKM / HIMA / BEM / DPM / Paguyuban
+  logoUrl           String?       @map("logo_url")
+  thumbnailVideoUrl String?       @map("thumbnail_video_url")
+  videoProfilUrl    String?       @map("video_profil_url")
+  deskripsi         String?
+  visiMisi          String?       @map("visi_misi")
+  programKerja      String?       @map("program_kerja")
+  prestasi          String?
+  instagramUrl      String?       @map("instagram_url")
+  createdAt         DateTime      @default(now()) @map("created_at")
+  updatedAt         DateTime      @updatedAt @map("updated_at")
+  galeri            OrmawaGaleri[]
+
+  @@index([kategori])
+  @@map("ormawa")
+}
+
+model OrmawaGaleri {
+  id       String    @id @default(cuid())
+  ormawaId String    @map("ormawa_id")
+  mediaUrl String    @map("media_url")
+  type     MediaType @default(IMAGE)
+  ormawa   Ormawa    @relation(fields: [ormawaId], references: [id], onDelete: Cascade)
+
+  @@map("ormawa_galeri")
+}
+
+model Gedung {
+  id            String   @id @default(cuid())
+  nama          String
+  fungsi        String?
+  jumlahLantai  Int?     @map("jumlah_lantai")
+  daftarRuangan Json?    @map("daftar_ruangan")
+  jamOperasional String? @map("jam_operasional")
+  fotoUrl       String?  @map("foto_url")
+  videoUrl      String?  @map("video_url")
+  googleMapsUrl String?  @map("google_maps_url")
+  koordinatX    Float?   @map("koordinat_x") // posisi pin di SVG map
+  koordinatY    Float?   @map("koordinat_y")
+
+  @@map("gedung")
+}
+
+model FaqKategori {
+  id    String @id @default(cuid())
+  nama  String @unique
+  slug  String @unique
+  faqs  Faq[]
+
+  @@map("faq_kategori")
+}
+
+model Faq {
+  id         String      @id @default(cuid())
+  kategoriId String      @map("kategori_id")
+  pertanyaan String
+  jawaban    String
+  isFeatured Boolean     @default(false) @map("is_featured")
+  urutan     Int         @default(0)
+  kategori   FaqKategori @relation(fields: [kategoriId], references: [id], onDelete: Cascade)
+
+  @@index([kategoriId])
+  @@index([isFeatured])
+  @@map("faq")
+}
+
+model VideoPkkmb {
+  id    String    @id @default(cuid())
+  tipe  VideoType
+  judul String
+  url   String
+
+  @@map("video_pkkmb")
+}
+
+// ============================ QUIZ ============================
+model QuizQuestion {
+  id           String    @id @default(cuid())
+  kategori     String
+  tipe         QuizType  @default(MC)
+  pertanyaan   String
+  opsi         Json?     // ["A","B","C","D"] untuk MC
+  jawabanBenar String    @map("jawaban_benar") // JANGAN pernah dikirim ke client sebelum submit
+  poin         Int       @default(10)
+  durasiDetik  Int       @default(30) @map("durasi_detik")
+  isActive     Boolean   @default(true) @map("is_active")
+  answers      QuizAnswer[]
+
+  @@index([kategori])
+  @@index([isActive])
+  @@map("quiz_questions")
+}
+
+model QuizSession {
+  id          String            @id @default(cuid())
+  mahasiswaId String            @map("mahasiswa_id")
+  startedAt   DateTime          @default(now()) @map("started_at")
+  finishedAt  DateTime?         @map("finished_at")
+  skor        Int               @default(0)
+  status      QuizSessionStatus @default(ongoing)
+  mahasiswa   Mahasiswa         @relation(fields: [mahasiswaId], references: [id], onDelete: Cascade)
+  answers     QuizAnswer[]
+
+  @@index([mahasiswaId])
+  @@map("quiz_sessions")
+}
+
+model QuizAnswer {
+  id             String       @id @default(cuid())
+  sessionId      String       @map("session_id")
+  questionId     String       @map("question_id")
+  jawabanDipilih String?      @map("jawaban_dipilih")
+  isCorrect      Boolean      @default(false) @map("is_correct")
+  waktuJawab     Int?         @map("waktu_jawab") // detik
+  session        QuizSession  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  question       QuizQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([sessionId, questionId])
+  @@map("quiz_answers")
+}
+
+// ============================ BADGE / GAMIFIKASI ============================
+model Badge {
+  id       String           @id @default(cuid())
+  kode     String           @unique
+  nama     String
+  deskripsi String?
+  iconUrl  String?          @map("icon_url")
+  kriteria String?
+  owners   MahasiswaBadge[]
+
+  @@map("badges")
+}
+
+model MahasiswaBadge {
+  id          String    @id @default(cuid())
+  mahasiswaId String    @map("mahasiswa_id")
+  badgeId     String    @map("badge_id")
+  earnedAt    DateTime  @default(now()) @map("earned_at")
+  mahasiswa   Mahasiswa @relation(fields: [mahasiswaId], references: [id], onDelete: Cascade)
+  badge       Badge     @relation(fields: [badgeId], references: [id], onDelete: Cascade)
+
+  @@unique([mahasiswaId, badgeId])
+  @@map("mahasiswa_badges")
+}
+
+// ============================ SOSMED SYNC ============================
+model SocialMediaSource {
+  id           String           @id @default(cuid())
+  platform     SocialPlatform
+  accountRef   String           @map("account_ref")
+  accessToken  String?          @map("access_token") // terenkripsi di app layer
+  lastSyncedAt DateTime?        @map("last_synced_at")
+  status       String           @default("active")
+  posts        SocialMediaPost[]
+
+  @@map("social_media_sources")
+}
+
+model SocialMediaPost {
+  id         String            @id @default(cuid())
+  sourceId   String            @map("source_id")
+  externalId String            @map("external_id")
+  title      String?
+  mediaUrl   String?           @map("media_url")
+  permalink  String?
+  postedAt   DateTime?         @map("posted_at")
+  isHidden   Boolean           @default(false) @map("is_hidden")
+  source     SocialMediaSource @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+
+  @@unique([sourceId, externalId])
+  @@index([postedAt])
+  @@map("social_media_posts")
+}
+
+// ============================ GUIDEBOOK / SETTINGS / AUDIT ============================
+model Guidebook {
+  id         String   @id @default(cuid())
+  fakultasId String?  @map("fakultas_id")
+  prodiId    String?  @map("prodi_id")
+  fileUrl    String   @map("file_url")
+  version    String   @default("1.0")
+  uploadedBy String?  @map("uploaded_by")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@map("guidebook")
+}
+
+model Settings {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("settings")
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  actorId   String?  @map("actor_id")
+  action    String
+  entity    String
+  entityId  String?  @map("entity_id")
+  diff      Json?
+  ip        String?
+  createdAt DateTime @default(now()) @map("created_at")
+  actor     User?    @relation(fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([entity])
+  @@map("audit_log")
+}
+
+model Notification {
+  id          String    @id @default(cuid())
+  targetScope TargetScope @default(ALL) @map("target_scope")
+  targetRefId String?   @map("target_ref_id")
+  title       String
+  body        String
+  channel     String    @default("push") // push/email/wa
+  status      String    @default("scheduled")
+  scheduledAt DateTime? @map("scheduled_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  @@map("notifications")
+}
