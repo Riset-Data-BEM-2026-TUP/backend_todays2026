@@ -1,0 +1,13 @@
+# Jangan ikutkan artefak host ke build context (mencegah node_modules Windows
+# menimpa node_modules container, dan mencegah secret .env masuk image)
+node_modules
+dist
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+*.log
+Dockerfile
+.dockerignore
+README.md
