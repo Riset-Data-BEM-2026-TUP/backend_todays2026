@@ -1,0 +1,51 @@
+# ===== Dependencies =====
+node_modules/
+.pnp
+.pnp.js
+
+# ===== Build output (NestJS) =====
+dist/
+build/
+*.tsbuildinfo
+
+# ===== Environment (RAHASIA — jangan pernah di-commit) =====
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+.env.test
+# .env.example TETAP di-commit sebagai template
+
+# ===== Logs =====
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ===== Testing / coverage =====
+coverage/
+.nyc_output/
+
+# ===== Prisma =====
+# Client hasil generate (ada di node_modules, tapi jaga-jaga bila di-output custom)
+prisma/generated/
+# JANGAN ignore prisma/migrations — itu harus ikut ter-commit
+
+# ===== Cache tooling =====
+.cache/
+.turbo/
+.eslintcache
+
+# ===== Editor / IDE =====
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
