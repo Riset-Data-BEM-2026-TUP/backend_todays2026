@@ -1,0 +1,201 @@
+{
+  "sheetName": "BUMPER TALENT",
+  "description": "Data materi, pemateri, aset, foto, dan PPT BUMPER TALENT dari ASET BUMPER.xlsx",
+  "sessions": [
+    {
+      "sesi": "PRA, 5 SEPTEMBER 2026",
+      "materi": [
+        {
+          "no": 1,
+          "pematerian": "MC",
+          "nama_pemateri": "Arzety Valentin Kembaren",
+          "foto": "https://drive.google.com/file/d/108SFghu_xJ52lEsUwJ4N15DhJIW9YjPz/view?usp=sharing",
+          "ppt": null,
+          "catatan_media": null
+        },
+        {
+          "no": 2,
+          "pematerian": "Sambutan PO",
+          "nama_pemateri": "Azzam Abdurrohman",
+          "foto": "https://drive.google.com/file/d/1Tjfd8eqEqXmak0FcQnPAWxwtZP2QihKT/view?usp=sharing",
+          "ppt": null,
+          "catatan_media": null
+        },
+        {
+          "no": 3,
+          "pematerian": "Sambutan Presiden",
+          "nama_pemateri": "Jaiz Cahya Prasetya",
+          "foto": "https://drive.google.com/file/d/1ENhUoGKS9ILinwnfHynhrpc41nH-Ls91/view?usp=sharing",
+          "ppt": null,
+          "catatan_media": null
+        },
+        {
+          "no": 4,
+          "pematerian": "OMNI Test & LEARNING MANAGEMENT SYSTEM (LMS) PKKMB 2026",
+          "nama_pemateri": "Kadarisman, S.Si",
+          "foto": null,
+          "ppt": "https://drive.google.com/file/d/10AaNbXLd0YwzD1LRP1D6ybHhZEYYU7Es/view?usp=sharing",
+          "catatan_media": null
+        },
+        {
+          "no": 5,
+          "pematerian": "Pencegahan dan Penanganan Kekerasan di Lingkungan Telkom University Purwokerto",
+          "nama_pemateri": "Hasri Wulan Nugraheni, S.Psi., M.Psi",
+          "foto": null,
+          "ppt": "https://docs.google.com/presentation/d/1lmdV2_maK3_XTZZD5GN0W3ov1EtFU8K5/edit?usp=drive_link&ouid=117869219158800907398&rtpof=true&sd=true",
+          "catatan_media": null
+        }
+      ],
+      "aset": [
+        {
+          "nama": "Mars Tel-U",
+          "link": "https://linktr.ee/Layanan_HumasTUP"
+        },
+        {
+          "nama": "Hymne Tel-U",
+          "link": null
+        }
+      ]
+    },
+    {
+      "sesi": "DAY 1, 9 SEPTEMBER 2026",
+      "materi": [
+        {
+          "no": 1,
+          "pematerian": "MC",
+          "nama_pemateri": "Andi Wahyudi",
+          "foto": "https://drive.google.com/file/d/1cxnSY06vn-xqT8okQKI0Th4n_G--F4QK/view?usp=sharing",
+          "ppt": null,
+          "catatan_media": null
+        },
+        {
+          "no": 2,
+          "pematerian": "MC",
+          "nama_pemateri": "Claresta Albertina",
+          "foto": null,
+          "ppt": null,
+          "catatan_media": null
+        },
+        {
+          "no": null,
+          "pematerian": "Sambutan Direktur TUP",
+          "nama_pemateri": "Dr. Tenia Wahyuningrum, S.Kom., M.T.",
+          "foto": "https://drive.google.com/file/d/1Q6CEsYFomtZO7fwsKLksI-aRE3udekTp/view?usp=drivesdk",
+          "ppt": null,
+          "catatan_media": null
+        },
+        {
+          "no": null,
+          "pematerian": "Sambutan Direktur Kemahasiswaan, Pengembangan Karir & Alumni Telkom University Bandung",
+          "nama_pemateri": "Dr. Maulana Rezi Ramadhana, S.Psi. M.Psi. Psikolog",
+          "foto": null,
+          "ppt": null,
+          "catatan_media": null
+        },
+        {
+          "no": null,
+          "pematerian": "Sambutan Mendiktisaintek",
+          "nama_pemateri": "Prof. Brian Yuliarto, S.T., M.Eng., Ph.D.",
+          "foto": null,
+          "ppt": null,
+          "catatan_media": "INI VIDEO SAMBUTAN"
+        },
+        {
+          "no": null,
+          "pematerian": "AI Studdy Buddy",
+          "nama_pemateri": "Faishal Rachman, S.Kom",
+          "foto": "https://drive.google.com/file/d/1u6lrk1e4d6fh8fJ0L_6BRWFO943tT8kf/view?usp=sharing",
+          "ppt": "https://drive.google.com/file/d/1LNZ7aHoPaWFW9NgOgqVOnQDv85xhzyrS/view?usp=sharing",
+          "catatan_media": null
+        },
+        {
+          "no": null,
+          "pematerian": "From Student to Scholar: Surviving and Thriving in University Life",
+          "nama_pemateri": "FATHIA FAIRUZA, B.Soc.SC., M.A.",
+          "foto": "https://drive.google.com/file/d/1wJdsCo3EW3hzvmdZ7ixHZVerVZSQBvcv/view?usp=sharing",
+          "ppt": "https://drive.google.com/file/d/1hND7CJxTP_2d6B0Qnwrr8_1GgCpLNWAZ/view?usp=sharing",
+          "catatan_media": null
+        },
+        {
+          "no": null,
+          "pematerian": "Identitas Sebagai Mahasiswa Telkom University: Berakar Pada Nilai, Berdampak Melalui Inovasi",
+          "nama_pemateri": "Dr. Tenia Wahyuningrum, S.Kom., M.T.",
+          "foto": "https://drive.google.com/file/d/1Q6CEsYFomtZO7fwsKLksI-aRE3udekTp/view?usp=drivesdk",
+          "ppt": null,
+          "catatan_media": null
+        },
+        {
+          "no": null,
+          "pematerian": "Growing Through Experience, Thriving Through Impact",
+          "nama_pemateri": "1. Jordan Angkawijaya",
+          "foto": "https://drive.google.com/file/d/1F6jZP4Rp34hV_k7RTEF1V3-9oTqyEFFP/view?usp=sharing",
+          "ppt": null,
+          "catatan_media": null
+        },
+        {
+          "no": null,
+          "pematerian": null,
+          "nama_pemateri": "2. Nopri Anita Libertiana Saragih",
+          "foto": "https://drive.google.com/file/d/1sReyDT9SjzCuzW51RNJAWzllKhe-_xLr/view?usp=drive_link",
+          "ppt": null,
+          "catatan_media": null
+        },
+        {
+          "no": null,
+          "pematerian": "Mengenal Tel-U Open Library dan Komunitas Literasi Sebagai Awal Perjalanan Intelektualmu",
+          "nama_pemateri": null,
+          "foto": null,
+          "ppt": null,
+          "catatan_media": null
+        },
+        {
+          "no": null,
+          "pematerian": "Seni Tari",
+          "nama_pemateri": "Spatel Dance Crew",
+          "foto": null,
+          "ppt": null,
+          "catatan_media": null
+        },
+        {
+          "no": null,
+          "pematerian": "Dance",
+          "nama_pemateri": "Telcomotion",
+          "foto": "https://drive.google.com/file/d/1cgbh0K2d1PabdGYY45-LnfDeVCzjSTcJ/view?usp=sharing",
+          "ppt": null,
+          "catatan_media": null
+        },
+        {
+          "no": null,
+          "pematerian": "Doa",
+          "nama_pemateri": "Muhammad Nazmi Al Faiz",
+          "foto": "https://drive.google.com/file/d/14yFJIA6NuwrPt-OMyAGEWXWavmzqJd_v/view?usp=sharing",
+          "ppt": null,
+          "catatan_media": null
+        }
+      ],
+      "aset": []
+    },
+    {
+      "sesi": "DAY 2, 10 SEPTEMBER 2026",
+      "materi": [
+        {
+          "no": 1,
+          "pematerian": "MC",
+          "nama_pemateri": "Jordan Angkawijaya",
+          "foto": "https://drive.google.com/file/d/1Eot_6CxnfQEs-M9siuzNTYsVPFMUGxfL/view?usp=drive_link",
+          "ppt": null,
+          "catatan_media": null
+        },
+        {
+          "no": 2,
+          "pematerian": "MC",
+          "nama_pemateri": "Nopri Anita Libertiana Saragih",
+          "foto": "https://drive.google.com/file/d/1sReyDT9SjzCuzW51RNJAWzllKhe-_xLr/view?usp=drive_link",
+          "ppt": null,
+          "catatan_media": null
+        }
+      ],
+      "aset": []
+    }
+  ]
+}
