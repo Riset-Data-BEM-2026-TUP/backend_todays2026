@@ -1,0 +1,266 @@
+[
+  {
+    "name": "HMDP",
+    "status": "skipped",
+    "reason": "empty-link"
+  },
+  {
+    "name": "HMDT",
+    "status": "downloaded",
+    "file": "HMDT.png",
+    "bytes": 247446,
+    "contentType": "image/png"
+  },
+  {
+    "name": "HMSD",
+    "status": "downloaded",
+    "file": "HMSD.png",
+    "bytes": 185067,
+    "contentType": "image/png"
+  },
+  {
+    "name": "HMTI",
+    "status": "downloaded",
+    "file": "HMTI.png",
+    "bytes": 51101,
+    "contentType": "image/png"
+  },
+  {
+    "name": "HMSE",
+    "status": "downloaded",
+    "file": "HMSE.png",
+    "bytes": 285232,
+    "contentType": "image/png"
+  },
+  {
+    "name": "HMSI",
+    "status": "downloaded",
+    "file": "HMSI.png",
+    "bytes": 945698,
+    "contentType": "image/png"
+  },
+  {
+    "name": "HMTT",
+    "status": "downloaded",
+    "file": "HMTT.png",
+    "bytes": 118377,
+    "contentType": "image/png"
+  },
+  {
+    "name": "HMTB",
+    "status": "downloaded",
+    "file": "HMTB.jpg",
+    "bytes": 82820,
+    "contentType": "image/jpeg"
+  },
+  {
+    "name": "HMIF",
+    "status": "downloaded",
+    "file": "HMIF.png",
+    "bytes": 102706,
+    "contentType": "image/png"
+  },
+  {
+    "name": "HMTL",
+    "status": "downloaded",
+    "file": "HMTL.png",
+    "bytes": 394229,
+    "contentType": "image/png"
+  },
+  {
+    "name": "HMBD",
+    "status": "downloaded",
+    "file": "HMBD.png",
+    "bytes": 1830925,
+    "contentType": "image/png"
+  },
+  {
+    "name": "HMTE",
+    "status": "downloaded",
+    "file": "HMTE.jpg",
+    "bytes": 144930,
+    "contentType": "image/jpeg"
+  },
+  {
+    "name": "HMDKV",
+    "status": "downloaded",
+    "file": "HMDKV.png",
+    "bytes": 405877,
+    "contentType": "image/png"
+  },
+  {
+    "name": "HMTP",
+    "status": "downloaded",
+    "file": "HMTP.jpg",
+    "bytes": 18657,
+    "contentType": "image/jpeg"
+  },
+  {
+    "name": "HIPMI",
+    "status": "downloaded",
+    "file": "HIPMI.jpg",
+    "bytes": 89624,
+    "contentType": "image/jpeg"
+  },
+  {
+    "name": "NEV",
+    "status": "downloaded",
+    "file": "NEV.png",
+    "bytes": 104078,
+    "contentType": "image/png"
+  },
+  {
+    "name": "SATRIA MUDA",
+    "status": "downloaded",
+    "file": "SATRIA MUDA.jpg",
+    "bytes": 26075,
+    "contentType": "image/jpeg"
+  },
+  {
+    "name": "WAPALA",
+    "status": "downloaded",
+    "file": "WAPALA.jpg",
+    "bytes": 65927,
+    "contentType": "image/jpeg"
+  },
+  {
+    "name": "ROBOCOMM",
+    "status": "downloaded",
+    "file": "ROBOCOMM.png",
+    "bytes": 9754,
+    "contentType": "image/png"
+  },
+  {
+    "name": "ASTRALIC",
+    "status": "downloaded",
+    "file": "ASTRALIC.png",
+    "bytes": 220274,
+    "contentType": "image/png"
+  },
+  {
+    "name": "MANGGALA",
+    "status": "downloaded",
+    "file": "MANGGALA.jpg",
+    "bytes": 32295,
+    "contentType": "image/jpeg"
+  },
+  {
+    "name": "PSM TELCOMICA VOICE",
+    "status": "downloaded",
+    "file": "PSM TELCOMICA VOICE.png",
+    "bytes": 1500744,
+    "contentType": "image/png"
+  },
+  {
+    "name": "SRE",
+    "status": "downloaded",
+    "file": "SRE.pdf",
+    "bytes": 186496,
+    "contentType": "application/pdf"
+  },
+  {
+    "name": "MERPATI PUTIH",
+    "status": "downloaded",
+    "file": "MERPATI PUTIH.jpg",
+    "bytes": 177013,
+    "contentType": "image/jpeg"
+  },
+  {
+    "name": "BADMINTON",
+    "status": "downloaded",
+    "file": "BADMINTON.jpg",
+    "bytes": 1171340,
+    "contentType": "image/jpeg"
+  },
+  {
+    "name": "LITERASI",
+    "status": "downloaded",
+    "file": "LITERASI.png",
+    "bytes": 4088640,
+    "contentType": "image/png"
+  },
+  {
+    "name": "KSR",
+    "status": "downloaded",
+    "file": "KSR.jpg",
+    "bytes": 148361,
+    "contentType": "image/jpeg"
+  },
+  {
+    "name": "GDGOC",
+    "status": "downloaded",
+    "file": "GDGOC.png",
+    "bytes": 5169534,
+    "contentType": "image/png"
+  },
+  {
+    "name": "ROKRIS",
+    "status": "downloaded",
+    "file": "ROKRIS.jpg",
+    "bytes": 98750,
+    "contentType": "image/jpeg"
+  },
+  {
+    "name": "CHYRONETIC",
+    "status": "downloaded",
+    "file": "CHYRONETIC.png",
+    "bytes": 38850,
+    "contentType": "image/png"
+  },
+  {
+    "name": "HEXACOMM",
+    "status": "downloaded",
+    "file": "HEXACOMM.jpg",
+    "bytes": 188219,
+    "contentType": "image/jpeg"
+  },
+  {
+    "name": "BASKET",
+    "status": "downloaded",
+    "file": "BASKET.png",
+    "bytes": 1560048,
+    "contentType": "image/png"
+  },
+  {
+    "name": "SENI TEMANI",
+    "status": "downloaded",
+    "file": "SENI TEMANI.jpg",
+    "bytes": 25510,
+    "contentType": "image/jpeg"
+  },
+  {
+    "name": "SKI",
+    "status": "downloaded",
+    "file": "SKI.png",
+    "bytes": 220077,
+    "contentType": "image/png"
+  },
+  {
+    "name": "Marketing Crew",
+    "status": "downloaded",
+    "file": "Marketing Crew.png",
+    "bytes": 326980,
+    "contentType": "image/png"
+  },
+  {
+    "name": "BTS",
+    "status": "downloaded",
+    "file": "BTS.jpg",
+    "bytes": 13590,
+    "contentType": "image/jpeg"
+  },
+  {
+    "name": "ESPORT",
+    "status": "downloaded",
+    "file": "ESPORT.png",
+    "bytes": 291365,
+    "contentType": "image/png"
+  },
+  {
+    "name": "KSPM",
+    "status": "downloaded",
+    "file": "KSPM.png",
+    "bytes": 530193,
+    "contentType": "image/png"
+  }
+]
