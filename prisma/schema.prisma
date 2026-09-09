@@ -13,10 +13,8 @@ datasource db {
 // ============================ ENUM ============================
 enum Role {
   mahasiswa
-  pendamping
   panitia
   admin
-  super_admin
 }
 
 enum TimelineStatus {
@@ -97,6 +95,10 @@ model Mahasiswa {
   userId            String   @unique @map("user_id")
   nomorPendaftaran  String   @unique @map("nomor_pendaftaran")
   nama              String
+  nim               String?  @unique @map("nim")
+  noKelompok        String?  @map("no_kelompok")
+  namaKelompok      String?  @map("nama_kelompok")
+  menfa             String?  @map("menfa")
   tanggalLahir      DateTime @map("tanggal_lahir")
   fakultasId        String   @map("fakultas_id")
   prodiId           String   @map("prodi_id")
@@ -169,9 +171,16 @@ model TimelineEvent {
   judul         String
   deskripsi     String?
   lokasi        String?
+  day           Int?
+  sesi          String?
+  pematerian    String?
+  namaPemateri  String?        @map("nama_pemateri")
+  fotoUrl       String?        @map("foto_url")
+  pptUrl        String?        @map("ppt_url")
   startAt       DateTime       @map("start_at")
   endAt         DateTime?      @map("end_at")
   checklistItems Json?         @map("checklist_items") // hal yang perlu dibawa
+  dresscode      String?
   attachmentUrl String?        @map("attachment_url")
   urutan        Int            @default(0)
   // status upcoming/ongoing/completed dihitung dari now() vs start/end (bukan disimpan)
@@ -179,6 +188,7 @@ model TimelineEvent {
   updatedAt     DateTime       @updatedAt @map("updated_at")
 
   @@index([startAt])
+  @@index([day])
   @@map("timeline_events")
 }
 
@@ -252,6 +262,11 @@ model OrmawaGaleri {
 model Gedung {
   id            String   @id @default(cuid())
   nama          String
+  kategori      String?
+  lokasi        String?
+  deskripsi     String?
+  deskripsiLengkap String? @map("deskripsi_lengkap")
+  fasilitas     String[]
   fungsi        String?
   jumlahLantai  Int?     @map("jumlah_lantai")
   daftarRuangan Json?    @map("daftar_ruangan")
@@ -261,8 +276,24 @@ model Gedung {
   googleMapsUrl String?  @map("google_maps_url")
   koordinatX    Float?   @map("koordinat_x") // posisi pin di SVG map
   koordinatY    Float?   @map("koordinat_y")
+  urutan        Int      @default(0)
 
   @@map("gedung")
+}
+
+model AcademicPlatform {
+  id               String   @id @default(cuid())
+  nama             String
+  singkatan        String?
+  kategori         String
+  url              String?
+  deskripsi        String?
+  deskripsiLengkap String?  @map("deskripsi_lengkap")
+  iconName         String?  @map("icon_name")
+  fiturUtama       String[] @map("fitur_utama")
+  urutan           Int      @default(0)
+
+  @@map("academic_platform")
 }
 
 model FaqKategori {
