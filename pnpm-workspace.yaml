@@ -1,6 +1,0 @@
-allowBuilds:
-  '@nestjs/core': false
-  '@prisma/client': false
-  '@prisma/engines': false
-  argon2: false
-  prisma: false

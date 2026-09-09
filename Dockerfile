@@ -2,7 +2,8 @@
 FROM node:22-alpine AS build
 WORKDIR /app
 # Prisma di Alpine (musl) butuh openssl untuk engine-nya.
-RUN apk add --no-cache openssl && corepack enable
+# python3/make/g++ untuk build native argon2 bila prebuilt musl tak tersedia.
+RUN apk add --no-cache openssl python3 make g++ && corepack enable
 COPY package.json ./
 COPY prisma ./prisma
 RUN pnpm install --no-frozen-lockfile
