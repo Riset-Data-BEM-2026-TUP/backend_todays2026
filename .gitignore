@@ -49,3 +49,12 @@ prisma/generated/
 # ===== OS =====
 .DS_Store
 Thumbs.db
+
+# ===== Data mentah peserta / PII (JANGAN commit — sudah ada di DB) =====
+/*.xlsx
+/MENFA_Kelompok_Makna.pdf
+extracted-json/pembagian-kelompok-final/
+
+# ===== Dokumen internal — hanya README.md yang boleh di-commit =====
+*.md
+!README.md
